@@ -3,14 +3,14 @@ locals {
 }
 
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
-    comment = var.comment
+  comment = var.comment
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
 
   origin {
-    domain_name              = aws_s3_bucket.s3.bucket_regional_domain_name
-    origin_id                = local.s3_origin_id
+    domain_name = aws_s3_bucket.s3.bucket_regional_domain_name
+    origin_id   = local.s3_origin_id
 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
@@ -21,8 +21,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   is_ipv6_enabled     = var.is_ipv6_enabled
   comment             = var.comment
   default_root_object = "index.html"
-  retain_on_delete = var.retain_on_delete
-  
+  retain_on_delete    = var.retain_on_delete
+
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
