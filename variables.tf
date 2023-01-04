@@ -32,7 +32,7 @@ variable "master" {
 
 variable "public_access" {
   description = "Whether Amazon S3 should block public ACLs for this bucket. Defaults to false"
-  type        = string
+  type        = bool
   default     = true
 }
 
